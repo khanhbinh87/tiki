@@ -1,13 +1,16 @@
-import { Button, Checkbox, Divider, Form, Input } from 'antd'
+import { Button, Divider, Form, Input } from 'antd'
+
+
 
 const onFinish = (values) => {
     console.log('Success:', values)
 }
 
+
 const Register = () => {
     return (
         <div>
-            <h3 style={{textAlign:'center'}}>Đăng ký người dùng mới</h3>
+            <h3 style={{ textAlign: 'center' }}>Đăng ký người dùng mới</h3>
             <Divider />
             <Form
                 name='register'
@@ -19,16 +22,16 @@ const Register = () => {
                 }}
                 style={{
                     maxWidth: '600px',
-                    margin:'0 auto'
+                    margin: '0 auto',
                 }}
                 initialValues={{
                     remember: true,
                 }}
                 onFinish={onFinish}
-                
                 autoComplete='off'
             >
                 <Form.Item
+                    labelCol={{ span: 24 }}
                     label='Full Name'
                     name='fullname'
                     rules={[
@@ -42,6 +45,7 @@ const Register = () => {
                 </Form.Item>
 
                 <Form.Item
+                    labelCol={{ span: 24 }}
                     label='Email'
                     name='email'
                     rules={[
@@ -55,6 +59,7 @@ const Register = () => {
                 </Form.Item>
 
                 <Form.Item
+                    labelCol={{ span: 24 }}
                     label='Password'
                     name='password'
                     rules={[
@@ -67,6 +72,7 @@ const Register = () => {
                     <Input.Password />
                 </Form.Item>
                 <Form.Item
+                    labelCol={{ span: 24 }}
                     label='Phone'
                     name='phone'
                     rules={[
@@ -85,7 +91,7 @@ const Register = () => {
                         span: 16,
                     }}
                 >
-                    <Button type='primary' htmlType='submit'>
+                    <Button type='primary' htmlType='submit' loading={false}>
                         Register
                     </Button>
                 </Form.Item>
