@@ -1,22 +1,14 @@
-import { Button, Checkbox, Form, Input } from 'antd'
+import { Button, Checkbox, Divider, Form, Input } from 'antd'
 
 const onFinish = (values) => {
     console.log('Success:', values)
 }
-const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-}
-const style = {
-    width: '800px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    margin: '0 auto',
-}
+
 const Register = () => {
     return (
-        <div style={style}>
+        <div>
+            <h3 style={{textAlign:'center'}}>Đăng ký người dùng mới</h3>
+            <Divider />
             <Form
                 name='register'
                 labelCol={{
@@ -26,13 +18,14 @@ const Register = () => {
                     span: 19,
                 }}
                 style={{
-                    width: '100%',
+                    maxWidth: '600px',
+                    margin:'0 auto'
                 }}
                 initialValues={{
                     remember: true,
                 }}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
+                
                 autoComplete='off'
             >
                 <Form.Item
