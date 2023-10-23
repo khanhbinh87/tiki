@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import Register from './pages/register'
+import LoginPage from './pages/login'
 
 const Layout = () => {
     return (
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     },
     {
         path: 'login',
-        element: <div>Login page</div>,
+        element: <LoginPage />,
     },
     {
         path: 'register',

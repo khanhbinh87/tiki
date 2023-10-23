@@ -1,17 +1,35 @@
-import { Button, Divider, Form, Input } from 'antd'
-
-
-
-const onFinish = (values) => {
-    console.log('Success:', values)
-}
-
+import { Button, Divider, Form, Input, message, notification } from 'antd'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { registerApi } from '../../services/api'
 
 const Register = () => {
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+
+    const onFinish = async (values) => {
+        const { fullName, email, password, phone } = values
+        setLoading(true)
+        const res = await  registerApi(fullName, email, password, phone)
+        
+        setLoading(false)
+        if(res?.data?._id){
+           
+            message.success('Register success')
+            navigate('/login')
+        }else{
+            notification.error({
+                message:'Có lỗi xảy ra',
+                description:res.message && Array.isArray(res.message) ? res.message[0] : res.message,
+                duration:5
+            })
+        }
+    }
+
     return (
         <div>
             <h3 style={{ textAlign: 'center' }}>Đăng ký người dùng mới</h3>
-            <Divider />
+
             <Form
                 name='register'
                 labelCol={{
@@ -30,10 +48,11 @@ const Register = () => {
                 onFinish={onFinish}
                 autoComplete='off'
             >
+                <Divider />
                 <Form.Item
                     labelCol={{ span: 24 }}
                     label='Full Name'
-                    name='fullname'
+                    name='fullName'
                     rules={[
                         {
                             required: true,
@@ -91,12 +110,17 @@ const Register = () => {
                         span: 16,
                     }}
                 >
-                    <Button type='primary' htmlType='submit' loading={false}>
+                    <Button type='primary' htmlType='submit' loading={loading}>
                         Register
                     </Button>
                 </Form.Item>
+
+                <Divider />
+                <span>Đã có tài khoản ? </span>
+                <Link to='/login'>Đăng nhập</Link>
             </Form>
         </div>
     )
 }
-export default Register
+
+export default Register;
